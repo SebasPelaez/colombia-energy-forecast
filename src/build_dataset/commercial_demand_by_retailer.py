@@ -4,8 +4,8 @@ import wget
 import numpy as np
 import pandas as pd
 
-import utils
-import preprocessing_utils
+from ..utils import utils
+from ..utils import preprocessing_utils
 
 def _groupby_dates_market(groups):
     

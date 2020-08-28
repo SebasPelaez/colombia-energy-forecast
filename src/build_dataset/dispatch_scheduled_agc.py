@@ -2,8 +2,8 @@ import argparse
 import numpy as np
 import os
 
-import preprocessing_utils
-import utils
+from ..utils import utils
+from ..utils import preprocessing_utils
 
 def generate(params):
 

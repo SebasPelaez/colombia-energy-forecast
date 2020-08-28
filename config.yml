@@ -1,6 +1,9 @@
 # Online Dataset
-url_dataset: 'https://www.dropbox.com/s/b8ykxt604zcymfr/proyecto-grados.zip?dl=1'
-compressed_data_name: 'proyecto-grados.zip'
+full_raw_dataset_url: 'https://www.dropbox.com/s/b8ykxt604zcymfr/proyecto-grados.zip?dl=1'
+compressed_full_raw_dataset: 'proyecto-grados.zip'
+
+preprocess_dataset_url: 'https://www.dropbox.com/s/6hww2p3udvcq5gq/preprocess-data.zip?dl=1'
+compressed_preprocess_dataset: 'preprocess-data.zip'
 
 # Directories for dataset and checkpoints
 data_dir: 'dataset'

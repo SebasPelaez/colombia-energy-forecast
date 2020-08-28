@@ -1,12 +1,12 @@
 import argparse
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
 import os
 import pandas as pd
-import geopandas as gpd
-import numpy as np
-from scipy import ndimage
-import matplotlib.pyplot as plt
 
-import utils
+from scipy import ndimage
+from ..utils import utils
 
 def _build_complete_df(geodf,variable):
     N = len(geodf)
@@ -58,8 +58,12 @@ def generate(params):
 
     unique_dates = pd.unique(data['DATE'])
 
+    iterator_idx = 0
     for variable in ['TAVG','PRCP']:
         for date in unique_dates:
+
+            if (iterator_idx%5000) == 0:
+                print('Se han construido {} imagenes'.format(iterator_idx))
 
             df_by_date = data[data['DATE'] == date]
 
@@ -75,6 +79,7 @@ def generate(params):
             img_name = str(date).split('T')[0]
             _build_heatmap_image_dataset(df_complete,variable,'{}.jpg'.format(img_name),params=params)
 
+            iterator_idx += 1
 
 if __name__ == "__main__":
 

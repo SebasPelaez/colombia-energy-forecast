@@ -1,7 +1,8 @@
 import argparse
-import preprocessing_utils
-import utils
 import os
+
+from ..utils import utils
+from ..utils import preprocessing_utils
 
 def generate(params):
 
