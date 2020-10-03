@@ -1,3 +1,4 @@
+import calendar
 import datetime
 import math
 import numpy as np
@@ -65,5 +66,23 @@ def remove_index_in_names(dataset,column_to_preprocess):
 	dataset[column_to_preprocess] = dataset[column_to_preprocess].str.replace('\d+', '')
 	dataset[column_to_preprocess] = dataset[column_to_preprocess].str.replace(r'(?=\b[MDCLXVI]+\b)M{0,4}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})', '')
 	dataset[column_to_preprocess] = dataset[column_to_preprocess].map(lambda x: x.strip(' '))
+
+	return dataset
+
+def get_features_from_date(dataset):
+
+	weekday_or_weekend_lambda = lambda x: 1 if x>=5 else 0
+
+	dataset = dataset.copy()
+
+	dataset['Ano'] = dataset['Fecha'].dt.year
+	dataset['Mes'] = dataset['Fecha'].dt.month
+	dataset['Dia'] = dataset['Fecha'].dt.day
+	dataset['Hora'] = dataset['Fecha'].dt.hour
+	dataset['Dia del ano'] = dataset['Fecha'].dt.dayofyear
+	dataset['Semana del ano'] = dataset['Fecha'].dt.weekofyear
+	dataset['Dia de la semana'] = dataset['Fecha'].dt.dayofweek
+	dataset['Trimestre'] = dataset['Fecha'].dt.quarter
+	dataset['Es Fin de Semana'] = dataset['Dia de la semana'].map(weekday_or_weekend_lambda)
 
 	return dataset

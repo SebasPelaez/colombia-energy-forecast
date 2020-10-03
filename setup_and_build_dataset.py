@@ -12,6 +12,7 @@ from src.build_dataset import dispatch_scheduled_agc
 from src.build_dataset import generation
 from src.build_dataset import national_stock_exchange_price
 from src.build_dataset import offer_price
+from src.build_dataset import rivers_flow_contribution
 
 def download_data(url_tar_file,downloads_dir):
 	if not os.path.exists(downloads_dir):
@@ -50,6 +51,7 @@ if __name__ == '__main__':
 		generation.generate(params)
 		national_stock_exchange_price.generate(params)
 		offer_price.generate(params)
+		rivers_flow_contribution.generate(params)
 	else:
 		download_data(params['preprocess_dataset_url'],params['downloads_dir'])
 		extract_data(params,params['compressed_preprocess_dataset'])
