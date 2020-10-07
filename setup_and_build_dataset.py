@@ -6,6 +6,7 @@ import zipfile
 import src.utils.utils as utilities
 import src.build_dataset.climate_data as climate_data
 
+from src.build_dataset import build_full_data_sheets
 from src.build_dataset import commercial_demand_by_retailer
 from src.build_dataset import demand_SIN
 from src.build_dataset import dispatch_scheduled_agc
@@ -52,6 +53,8 @@ if __name__ == '__main__':
 		national_stock_exchange_price.generate(params)
 		offer_price.generate(params)
 		rivers_flow_contribution.generate(params)
+
+		build_full_data_sheets.generate(params)
 	else:
 		download_data(params['preprocess_dataset_url'],params['downloads_dir'])
 		extract_data(params,params['compressed_preprocess_dataset'])
