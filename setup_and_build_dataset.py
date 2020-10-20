@@ -41,9 +41,13 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	params = utilities.yaml_to_dict(args.config)
 
+	build_full_data_sheets.generate(params)
+
+	"""
 	download_data(params['full_raw_dataset_url'],params['downloads_dir'])
 	extract_data(params,params['compressed_full_raw_dataset'])
 
+	
 	if args.full_download == 'Y':
 		climate_data.generate(params)
 		commercial_demand_by_retailer.generate(params)
@@ -58,3 +62,6 @@ if __name__ == '__main__':
 	else:
 		download_data(params['preprocess_dataset_url'],params['downloads_dir'])
 		extract_data(params,params['compressed_preprocess_dataset'])
+		download_data(params['compressed_objects_url'],params['downloads_dir'])
+		extract_data(params,params['compressed_objects'])
+	"""

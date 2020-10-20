@@ -1,9 +1,12 @@
 # Online Dataset
-full_raw_dataset_url: 'https://www.dropbox.com/s/b8ykxt604zcymfr/proyecto-grados.zip?dl=1'
+full_raw_dataset_url: 'https://www.dropbox.com/s/h119lj0kyvabkrg/proyecto-grados.zip?dl=1'
 compressed_full_raw_dataset: 'proyecto-grados.zip'
 
-preprocess_dataset_url: 'https://www.dropbox.com/s/6hww2p3udvcq5gq/preprocess-data.zip?dl=1'
+preprocess_dataset_url: 'https://www.dropbox.com/s/v3l2v55ydp1k10h/preprocess-data.zip?dl=1'
 compressed_preprocess_dataset: 'preprocess-data.zip'
+
+compressed_objects_url: 'https://www.dropbox.com/s/9cw8tsum8w2swob/objects.zip?dl=1'
+compressed_objects: 'objects.zip'
 
 # Directories for dataset and checkpoints
 data_dir: 'dataset'
@@ -11,7 +14,10 @@ data_dir_climatic: 'climatic'
 data_dir_climatic_images: 'Climatic Images'
 data_dir_series: 'Series'
 data_dir_xm: 'xm'
+data_objects: 'objects'
+data_objects_scaler: 'scaler'
 downloads_dir: 'downloads'
+
 
 # Data Files
 meteorologic_stations_data_file: 'Estaciones Meteorologicas Colombia V1.csv'

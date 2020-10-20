@@ -86,3 +86,12 @@ def get_features_from_date(dataset):
 	dataset['Es Fin de Semana'] = dataset['Dia de la semana'].map(weekday_or_weekend_lambda)
 
 	return dataset
+
+def save_data_files(file_path,file_name,data):
+
+	if not os.path.exists(file_path):
+		os.makedirs(file_path)
+
+	file_path = os.path.join(file_path,'{}.xlsx'.format(file_name))
+	data.to_excel(file_path,index=True)
+	print('Archivo: {} Guardado con exito'.format(file_path))
