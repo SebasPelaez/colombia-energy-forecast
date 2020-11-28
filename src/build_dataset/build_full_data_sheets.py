@@ -117,6 +117,17 @@ def _generate_predicted_variable_data_sheet(params):
 
 
 def generate(params):
+
+	daily_data_sheet_path = os.path.join(params['data_dir'],params['data_dir_series'],'Sabanas','Original','Sabana_Datos_Diaria.xlsx')
+	hourly_data_sheet_path = os.path.join(params['data_dir'],params['data_dir_series'],'Sabanas','Original','Sabana_Datos_Horaria.xlsx')
+	predicted_variable_data_sheet_path = os.path.join(params['data_dir'],params['data_dir_series'],'Sabanas','Original','Sabana_Datos_Precio_Bolsa.xlsx')
+
+	standarize.make_standarization(params,path=hourly_data_sheet_path,standarized_data_name='Sabana_Datos_Horaria_Estandarizada',scaler_name='hourly_scaler')
+	standarize.make_standarization(params,path=daily_data_sheet_path,standarized_data_name='Sabana_Datos_Diaria_Estandarizada',scaler_name='daily_scaler')
+	standarize.make_standarization(params,path=predicted_variable_data_sheet_path,standarized_data_name='Sabana_Datos_Precio_Bolsa_Estandarizada',scaler_name='stock_price_scaler')
+
+	"""
+
 	resources_list = ['ALBAN','BETANIA','CHIVOR','EL QUIMBO','GUATAPE','GUATRON',
 	'GUAVIO','LA TASAJERA','MIEL','PAGUA','PLAYAS','PORCE','SAN CARLOS',
 	'SOGAMOSO','URRA']
@@ -140,7 +151,8 @@ def generate(params):
 
 	standarize.make_standarization(params,data=hourly_data_sheet,standarized_data_name='Sabana_Datos_Horaria_Estandarizada',scaler_name='hourly_scaler')
 	standarize.make_standarization(params,data=daily_data_sheet,standarized_data_name='Sabana_Datos_Diaria_Estandarizada',scaler_name='daily_scaler')
-
+	standarize.make_standarization(params,data=predicted_variable_data_sheet,standarized_data_name='Sabana_Datos_Precio_Bolsa_Estandarizada',scaler_name='stock_price_scaler')
+"""
 if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser()

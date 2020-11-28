@@ -3,8 +3,8 @@ import numpy as np
 import os
 import pandas as pd
 
-import preprocessing_utils
-import utils
+from . import preprocessing_utils
+from . import utils
 
 def _find_characteristics(data_sheet):
 
@@ -36,7 +36,7 @@ def _find_characteristics(data_sheet):
 	return data_sheet_df
 
 
-def _generate(params):
+def generate(params):
 
 	print('.....Load Files')
 
@@ -60,7 +60,7 @@ def _generate(params):
 
 	file_path = os.path.join(params['data_dir'],params['data_dir_series'],'Resumen')
 	preprocessing_utils.save_data_files(file_path=file_path,file_name='Resumen_Datos_Precio_Bolsa',data=predicted_variable_summary)
-	preprocessing_utils.save_data_files(file_path=file_path,file_name='Resumen_Datos_Diario-TEST',data=daily_data_sheet_summary)
+	preprocessing_utils.save_data_files(file_path=file_path,file_name='Resumen_Datos_Diario',data=daily_data_sheet_summary)
 	preprocessing_utils.save_data_files(file_path=file_path,file_name='Resumen_Datos_Horaria',data=hourly_data_sheet_summary)
 
 if __name__ == '__main__':
@@ -71,4 +71,4 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	params = utils.yaml_to_dict(args.config)
 
-	_generate(params)
+	generate(params)

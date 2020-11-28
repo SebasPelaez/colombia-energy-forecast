@@ -4,8 +4,9 @@ import wget
 import zipfile
 
 import src.utils.utils as utilities
-import src.build_dataset.climate_data as climate_data
+import src.utils.save_variable_analysis as variable_summary
 
+from src.build_dataset import climate_data
 from src.build_dataset import build_full_data_sheets
 from src.build_dataset import commercial_demand_by_retailer
 from src.build_dataset import demand_SIN
@@ -47,7 +48,6 @@ if __name__ == '__main__':
 	download_data(params['full_raw_dataset_url'],params['downloads_dir'])
 	extract_data(params,params['compressed_full_raw_dataset'])
 
-	
 	if args.full_download == 'Y':
 		climate_data.generate(params)
 		commercial_demand_by_retailer.generate(params)
@@ -59,6 +59,7 @@ if __name__ == '__main__':
 		rivers_flow_contribution.generate(params)
 
 		build_full_data_sheets.generate(params)
+		variable_summary.generate(params)
 	else:
 		download_data(params['preprocess_dataset_url'],params['downloads_dir'])
 		extract_data(params,params['compressed_preprocess_dataset'])
