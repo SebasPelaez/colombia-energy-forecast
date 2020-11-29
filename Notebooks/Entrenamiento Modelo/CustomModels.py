@@ -1,7 +1,21 @@
 import tensorflow as tf
 
+"""
+Script que contiene todos los modelos con los cuales se va a predecir el precio
+en bolsa de Colombia de la energia electrica.
+"""
+
 class CustomRNN(tf.keras.models.Model):
-    
+    """
+    Clase que contiene la arquitectura de una red recurrente tradicional. La cons-
+    trucción de esta red consta de una capa recurrente simple precedida de una ca-
+    pa densa.
+    Input:
+        - rnn_units: Número de neuronas involucradas en la capa recurrente.
+        - output_units: Número de neuronas en la capa de salida.
+    Output:
+        - Arquitectura de Red Recurrente.
+    """   
     def __init__(self,rnn_units,output_units):
         super(CustomRNN, self).__init__()
         self.rnn_units = rnn_units
@@ -23,7 +37,16 @@ class CustomRNN(tf.keras.models.Model):
         return output
 
 class CustomLSTM(tf.keras.models.Model):
-    # TimeDistributed es para la salida de la capa LSTM y poderla combinar con la Densa 
+    """
+    Clase que contiene la arquitectura de una red recurrente del tipo LSTM.    La
+    construcción de esta red consta de una capa recurrente LSTM precedida de  una
+    capa densa.
+    Input:
+        - lstm_units: Número de neuronas involucradas en la capa recurrente.
+        - output_units: Número de neuronas en la capa de salida.
+    Output:
+        - Arquitectura de Red Recurrente.
+    """
     def __init__(self,lstm_units,output_units):
         super(CustomLSTM, self).__init__()
         self.lstm_units = lstm_units
@@ -44,7 +67,16 @@ class CustomLSTM(tf.keras.models.Model):
         return output
 
 class CustomGRU(tf.keras.models.Model):
-    
+    """
+    Clase que contiene la arquitectura de una red recurrente del tipo GRU.    La
+    construcción de esta red consta de una capa recurrente GRU precedida de  una
+    capa densa.
+    Input:
+        - gru_units: Número de neuronas involucradas en la capa recurrente.
+        - output_units: Número de neuronas en la capa de salida.
+    Output:
+        - Arquitectura de Red Recurrente.
+    """
     def __init__(self,gru_units,output_units):
         super(CustomGRU, self).__init__()
         self.gru_units = gru_units
@@ -65,7 +97,19 @@ class CustomGRU(tf.keras.models.Model):
         return output
 
 class CustomCNN(tf.keras.models.Model):
-    
+    """
+    Clase que contiene la arquitectura de una red convolucional. La construcción
+    de esta red consta de un bloque convolicional que a su ves esta  constituido
+    por una capa convolucional 1D, una capa de BatchNormalization, una capa  con
+    la función de activación y finalmente una capa de MaxPooling. Después de es-
+    te bloque convolucional lo sigue una capa de GlobalAveragePooling1D, una ca-
+    pa con normalización Dropout y finalmente una capa densa.
+    Input:
+        - dropout_rate: Indicie de regularización Dropout.
+        - output_units: Número de neuronas en la capa de salida.
+    Output:
+        - Arquitectura de Red Convolucional.
+    """
     def __init__(self,dropout_rate,output_units):
         super(CustomCNN, self).__init__()
 

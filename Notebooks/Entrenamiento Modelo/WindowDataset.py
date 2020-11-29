@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import tensorflow as tf
 
+"""
+Script que se encarga de realizar la construcción de la ventana de datos y retornar el generador
+de los mismos. Dicho script fue tomado del Tutorial de TensorFlow disponibles en la siguienteurl
+https://www.tensorflow.org/tutorials/structured_data/time_series donde se podrá encontrar la do-
+cumentación completa y oficial.
+"""
+
 class WindowGenerator():
     def __init__(self, input_width, label_width, shift, batch,
                train_df, val_df, test_df,inputs_columns,
