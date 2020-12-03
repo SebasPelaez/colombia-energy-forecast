@@ -6,8 +6,24 @@ import pandas as pd
 from . import preprocessing_utils
 from . import utils
 
-def _find_characteristics(data_sheet):
+"""
+Este script tiene como función construir un descriptivo de las variables dis-
+ponibles en cada una de las sabanas de datos.
+"""
 
+def _find_characteristics(data_sheet):
+	"""
+	Esta función encuentra las caracteristicas más importantes en una sábana
+	de datos. Entre la información que extrae está: Valor mínimo, valor  mí-
+	nimo diferente de cero, valor máximo, media, mediana, desviación, %   de
+	valores diferentes de cero, % de valores en cero.
+	Input:
+		- data_sheet: DataFrame de pandas con la información de una macro va-
+		riable.
+	Output:
+		- data_sheet_df: DataFrame de pandas con el descriptivo    organizado
+		por columnas.   
+	"""
 	data_sheet_dict = dict()
 	for column in data_sheet.columns:
 	    data_sheet_dict[column] = dict()
@@ -37,7 +53,12 @@ def _find_characteristics(data_sheet):
 
 
 def generate(params):
-
+	"""
+	Esta función se encarga de tomar cada una de las sábanas de datos y realiza los lla-
+	mados pertinentes a la función que construye el dataframe con el descriptivo.
+	Input:
+		- params: Diccionario con los parámetros de configuración del proyecto.
+	"""
 	print('.....Load Files')
 
 	predicted_variable_data_sheet_path = os.path.join(params['data_dir'],params['data_dir_series'],'Sabanas','Original','Sabana_Datos_Precio_Bolsa.xlsx')

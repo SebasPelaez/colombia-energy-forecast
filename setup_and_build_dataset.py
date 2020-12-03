@@ -16,14 +16,32 @@ from src.build_dataset import national_stock_exchange_price
 from src.build_dataset import offer_price
 from src.build_dataset import rivers_flow_contribution
 
+"""
+Script de instalación y configuración que se encarga de preparar todos los datos y archivos
+necesarios para poder ejecutar el entrenamiento de un modelo.
+"""
+
 def download_data(url_tar_file,downloads_dir):
+	"""
+	Este método toma una url y se encarga de descargar el contenido de la misma en una ruta
+	dada.
+	Input:
+		- url_tar_file: Url desde donde se descargarán los archivos.
+		- downloads_dir: Ruta local en la cual serán descargados el contenido de la url.
+	"""
 	if not os.path.exists(downloads_dir):
 	  	os.makedirs(downloads_dir)
 
 	wget.download(url_tar_file, downloads_dir)
 
 def extract_data(params,compressed_file_name):
-
+	"""
+	Este método se encarga de descomprimir un archivo en formato zip y dejar su conteni-
+	do en una ruta definida.
+	Input:
+		- params: Diccionario con los parámetros de configuración del proyecto.
+		- compressed_file_name: Nombre del archivo que será descomprimido.
+	"""
 	zip_file = os.path.join(params['downloads_dir'],compressed_file_name)
 
 	zip_ref = zipfile.ZipFile(zip_file, 'r')
@@ -42,9 +60,6 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	params = utilities.yaml_to_dict(args.config)
 
-	build_full_data_sheets.generate(params)
-
-	"""
 	download_data(params['full_raw_dataset_url'],params['downloads_dir'])
 	extract_data(params,params['compressed_full_raw_dataset'])
 
@@ -65,4 +80,3 @@ if __name__ == '__main__':
 		extract_data(params,params['compressed_preprocess_dataset'])
 		download_data(params['compressed_objects_url'],params['downloads_dir'])
 		extract_data(params,params['compressed_objects'])
-	"""
