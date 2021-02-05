@@ -154,3 +154,4 @@ dmypy.json
 downloads/
 dataset/
 Notebooks/Entrenamiento Modelo/logs/
+Notebooks/Entrenamiento Modelo/Tuned Modelo Imagenes/dataset/
