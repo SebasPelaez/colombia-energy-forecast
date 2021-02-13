@@ -60,18 +60,18 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	params = utilities.yaml_to_dict(args.config)
 
-	download_data(params['full_raw_dataset_url'],params['downloads_dir'])
-	extract_data(params,params['compressed_full_raw_dataset'])
+	#download_data(params['full_raw_dataset_url'],params['downloads_dir'])
+	#extract_data(params,params['compressed_full_raw_dataset'])
 
 	if args.full_download == 'Y':
-		climate_data.generate(params)
-		commercial_demand_by_retailer.generate(params)
-		demand_SIN.generate(params)
-		dispatch_scheduled_agc.generate(params)
-		generation.generate(params)
-		national_stock_exchange_price.generate(params)
-		offer_price.generate(params)
-		rivers_flow_contribution.generate(params)
+		#climate_data.generate(params)
+		#commercial_demand_by_retailer.generate(params)
+		#demand_SIN.generate(params)
+		#dispatch_scheduled_agc.generate(params)
+		#generation.generate(params)
+		#national_stock_exchange_price.generate(params)
+		#offer_price.generate(params)
+		#rivers_flow_contribution.generate(params)
 
 		build_full_data_sheets.generate(params)
 		variable_summary.generate(params)

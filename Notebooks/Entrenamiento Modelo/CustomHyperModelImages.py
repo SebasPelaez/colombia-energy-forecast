@@ -16,7 +16,7 @@ class ArquitecturaI1(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=5, step=2, default=3
@@ -42,7 +42,7 @@ class ArquitecturaI1(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_3", min_value=3, max_value=5, step=2, default=3
@@ -68,7 +68,7 @@ class ArquitecturaI1(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_5", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_5", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_5", min_value=3, max_value=5, step=2, default=3
@@ -142,7 +142,7 @@ class ArquitecturaI2(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -170,7 +170,7 @@ class ArquitecturaI2(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_3", min_value=3, max_value=7, step=2, default=3
@@ -244,7 +244,7 @@ class ArquitecturaI3(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -318,7 +318,7 @@ class ArquitecturaI4(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=5, step=2, default=3
@@ -344,7 +344,7 @@ class ArquitecturaI4(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_3", min_value=3, max_value=5, step=2, default=3
@@ -370,7 +370,7 @@ class ArquitecturaI4(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_5", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_5", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_5", min_value=3, max_value=5, step=2, default=3
@@ -431,7 +431,7 @@ class ArquitecturaI5(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -459,7 +459,7 @@ class ArquitecturaI5(HyperModel):
         model.add(
             tf.keras.layers.ConvLSTM2D(
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_3", min_value=3, max_value=7, step=2, default=3
@@ -520,7 +520,7 @@ class ArquitecturaI6(HyperModel):
             tf.keras.layers.ConvLSTM2D(
                 input_shape=self.input_shape,
                 filters=hp.Int(
-                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                    "convLSTM2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                 ),
                 kernel_size=hp.Int(
                     "convLSTM2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -581,7 +581,7 @@ class ArquitecturaI7(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=5, step=2, default=3
@@ -608,7 +608,7 @@ class ArquitecturaI7(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_3", min_value=3, max_value=5, step=2, default=3
@@ -635,7 +635,7 @@ class ArquitecturaI7(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_5", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_5", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_5", min_value=3, max_value=5, step=2, default=3
@@ -742,7 +742,7 @@ class ArquitecturaI8(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -771,7 +771,7 @@ class ArquitecturaI8(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_3", min_value=3, max_value=7, step=2, default=3
@@ -879,7 +879,7 @@ class ArquitecturaI9(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -986,7 +986,7 @@ class ArquitecturaI10(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=5, step=2, default=3
@@ -1013,7 +1013,7 @@ class ArquitecturaI10(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_3", min_value=3, max_value=5, step=2, default=3
@@ -1040,7 +1040,7 @@ class ArquitecturaI10(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_5", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_5", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_5", min_value=3, max_value=5, step=2, default=3
@@ -1134,7 +1134,7 @@ class ArquitecturaI11(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
@@ -1163,7 +1163,7 @@ class ArquitecturaI11(HyperModel):
             tf.keras.layers.TimeDistributed(
                 tf.keras.layers.Conv2D(
                     filters=hp.Int(
-                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_3", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_3", min_value=3, max_value=7, step=2, default=3
@@ -1258,7 +1258,7 @@ class ArquitecturaI12(HyperModel):
                 tf.keras.layers.Conv2D(
                     input_shape=self.input_shape,
                     filters=hp.Int(
-                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=8
+                        "conv2d_filters_layer_1", min_value=8, max_value=32, step=32, default=32
                     ),
                     kernel_size=hp.Int(
                         "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3

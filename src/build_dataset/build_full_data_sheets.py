@@ -2,7 +2,6 @@ import numpy as np
 import os
 import pandas as pd
 
-from . import standarize
 from ..utils import preprocessing_utils
 
 def _load_files(data_dir_path,file_name_condition):
@@ -16,7 +15,7 @@ def _load_files(data_dir_path,file_name_condition):
 
 	full_data = pd.concat(data_list)
 	full_data['Fecha'] = pd.to_datetime(full_data['Fecha'], format='%Y-%m-%d')
-	full_data = full_data[full_data['Fecha'].between('1999-12-31 23:59:59', '2020-04-01', inclusive=False)]
+	full_data = full_data[full_data['Fecha'].between('1999-12-31 23:59:59', '2020-05-01', inclusive=False)]
 
 	return full_data
 
@@ -60,10 +59,8 @@ def _generate_hourly_data_sheet(params,resources_list,active_agents_list):
 														values='kWh')
 	agc_dispatch_data_sheet.columns = 'Demanda AGC ' + agc_dispatch_data_sheet.columns
 
-
-
 	hourly_data_sheet = pd.concat([generation_data_sheet,demand_by_retailer_data_sheet,agc_dispatch_data_sheet],axis=1)
-	hourly_data_sheet = hourly_data_sheet[(hourly_data_sheet.index > '2000-01-31 23:59:59') & (hourly_data_sheet.index < '2020-04-01')]
+	hourly_data_sheet = hourly_data_sheet[(hourly_data_sheet.index > '2000-01-31 23:59:59') & (hourly_data_sheet.index < '2020-05-01')]
 	hourly_data_sheet = hourly_data_sheet.sort_index(ascending=True)
 	hourly_data_sheet.fillna(0, inplace=True)
 
@@ -96,7 +93,7 @@ def _generate_daily_data_sheet(params,resources_list,active_agents_list,rivers_r
 
 	daily_data_sheet = pd.concat([demand_data_sheet,river_flow_data_sheet,offer_price_data_sheet],axis=1)
 	daily_data_sheet = daily_data_sheet.sort_index(ascending=True)
-	daily_data_sheet = daily_data_sheet[(daily_data_sheet.index > '2000-01-31 23:59:59') & (daily_data_sheet.index < '2020-04-01')]
+	daily_data_sheet = daily_data_sheet[(daily_data_sheet.index > '2000-01-31 23:59:59') & (daily_data_sheet.index < '2020-05-01')]
 	daily_data_sheet.fillna(0, inplace=True)
 
 	return daily_data_sheet
@@ -107,7 +104,7 @@ def _generate_predicted_variable_data_sheet(params):
 	national_stock_exchange_data_sheet = _load_files(national_stock_exchange_dir,'Bolsa Nacional')
 	national_stock_exchange_data_sheet = national_stock_exchange_data_sheet.set_index('Fecha')
 
-	date_filter_mask = (national_stock_exchange_data_sheet.index > '2000-01-31 23:59:59') & (national_stock_exchange_data_sheet.index < '2020-04-01')
+	date_filter_mask = (national_stock_exchange_data_sheet.index > '2000-01-31 23:59:59') & (national_stock_exchange_data_sheet.index < '2020-05-01')
 	
 	national_stock_exchange_data_sheet = national_stock_exchange_data_sheet.sort_index(ascending=True)
 	national_stock_exchange_data_sheet = national_stock_exchange_data_sheet[date_filter_mask]
@@ -130,18 +127,20 @@ def generate(params):
 	agents_list = pd.read_excel(agents_list_path,skiprows=3)
 	active_agents_list = agents_list[agents_list['Estado'] == 'OPERACION']
 
+	print('Se inicia Construción de Sabana Horaria')
 	hourly_data_sheet = _generate_hourly_data_sheet(params,resources_list,active_agents_list['Código'])
+	print('Finaliza Construción de Sabana Horaria')
+	print('Se inicia Construción de Sabana Diaria')
 	daily_data_sheet = _generate_daily_data_sheet(params,resources_list,active_agents_list['Código'],rivers_resources_merge_filtered)
+	print('Finaliza Construción de Sabana Diaria')
+	print('Se inicia Construción de Variable Precio')
 	predicted_variable_data_sheet = _generate_predicted_variable_data_sheet(params)
+	print('Finaliza Construción de Variable Precio')
 
 	file_path = os.path.join(params['data_dir'],params['data_dir_series'],'Sabanas','Original')
 	preprocessing_utils.save_data_files(file_path=file_path,file_name='Sabana_Datos_Horaria',data=hourly_data_sheet)
 	preprocessing_utils.save_data_files(file_path=file_path,file_name='Sabana_Datos_Diaria',data=daily_data_sheet)
 	preprocessing_utils.save_data_files(file_path=file_path,file_name='Sabana_Datos_Precio_Bolsa',data=predicted_variable_data_sheet)
-
-	standarize.make_standarization(params,data=hourly_data_sheet,standarized_data_name='Sabana_Datos_Horaria_Estandarizada',scaler_name='hourly_scaler')
-	standarize.make_standarization(params,data=daily_data_sheet,standarized_data_name='Sabana_Datos_Diaria_Estandarizada',scaler_name='daily_scaler')
-	standarize.make_standarization(params,data=predicted_variable_data_sheet,standarized_data_name='Sabana_Datos_Precio_Bolsa_Estandarizada',scaler_name='stock_price_scaler')
 
 if __name__ == '__main__':
 

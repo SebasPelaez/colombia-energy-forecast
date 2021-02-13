@@ -91,105 +91,91 @@ def create_datasetMultipleTimesBackAhead_differentTimes(ds_x, ds_y, n_steps_out=
 
     return np.array(dataX), np.array(dataY).reshape(-1,n_steps_out,1)
 
-def SplitTimeseriesMultipleTimesBackAhead(df,day = 'Monday', ValData = 'steps', TimeAhead = 96, n_steps_out=1, n_steps_in = 1, overlap = 1, input_features=None,output_features=None):
-    if day == 'All':
-        if ValData == 'index':
-
-            # split into train and test sets
-            df2 = df
-            dataset = df2[input_features].values
-
-            train = df.loc[df.index < TimeAhead, input_features].values
-            train_Y = df.loc[df.index < TimeAhead, output_features].values
-            test = df.loc[df.index >= TimeAhead, input_features].values
-            test_Y = df.loc[df.index >= TimeAhead, output_features].values
-
-            # normalize the dataset
-            scaler_x = MinMaxScaler(feature_range=(0, 1))
-            train  = scaler_x.fit_transform(train)
-            test   = scaler_x.transform(test)
-
-            scaler_y = MinMaxScaler(feature_range=(0, 1))
-            train_Y  = scaler_y.fit_transform(train_Y)
-            test_Y   = scaler_y.transform(test_Y)
-            
-            trainX, trainY = create_datasetMultipleTimesBackAhead_inverse(train,ds_y=train_Y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
-
-            test2_x = np.concatenate((train[-n_steps_in:].reshape(n_steps_in,-1),test),axis=0)
-            test2_y = np.concatenate((train_Y[-n_steps_in:].reshape(n_steps_in,-1),test_Y),axis=0)
-            
-            testX, testY = create_datasetMultipleTimesBackAhead_inverse(test2_x,ds_y=test2_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
-
-            # reshape input to be [samples, time steps, features]
-            trainY = np.reshape(trainY, (-1, n_steps_out, len(output_features)))
-            testY = np.reshape(testY, (-1, n_steps_out, len(output_features)))
-    else:
-        if ValData == 'index':
-
-            df2 = df
-
-            dataset = df2[input_features].values
-
-            # split into train and test sets
-            train_x = df2.loc[df2.index <  TimeAhead, input_features].values
-            test_x  = df2.loc[df2.index >= TimeAhead, input_features].values
-
-            train_y = df2.loc[df2.index <  TimeAhead, output_features].values
-            test_y  = df2.loc[df2.index >= TimeAhead, output_features].values
-
-            # normalize the dataset
-            scaler_x = MinMaxScaler(feature_range=(0, 1))
-            train  = scaler_x.fit_transform(train_x)
-            test   = scaler_x.transform(test_x)
-
-            scaler_y = MinMaxScaler(feature_range=(0, 1))
-            train_Y  = scaler_y.fit_transform(train_y)
-            test_Y   = scaler_y.transform(test_y)
-
-            trainX, trainY = create_datasetMultipleTimesBackAhead(train,ds_y=train_Y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
-
-            test2_x = np.concatenate((train[-n_steps_in:].reshape(n_steps_in,-1),test),axis=0)
-            test2_y = np.concatenate((train_Y[-n_steps_in:].reshape(n_steps_in,-1),test_Y),axis=0)
-
-            testX, testY = create_datasetMultipleTimesBackAhead(test2_x,ds_y=test2_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
-
-            # reshape input to be [samples, time steps, features]
-            trainY = np.reshape(trainY, (-1, n_steps_out, len(output_features)))
-            testY = np.reshape(testY, (-1, n_steps_out, len(output_features)))
-
-    return trainX, trainY, testX, testY, scaler_x,scaler_y, df2, dataset
-
-def SplitTimeseriesMultipleTimesBackAhead_differentTimes(df_x,df_y,day = 'Monday', TimeSplit = '2020-01-01', n_steps_out=1, n_steps_in = 1, overlap = 1, input_features=None, output_features=None):
+def SplitTimeseriesMultipleTimesBackAhead(df,day='Monday',start_date_train='2000-02-01',start_date_val='2020-01-01',
+                                          start_date_test='2020-04-01',end_date_test='2020-05-01',n_steps_out=1,
+                                          n_steps_in=1,overlap=1,input_features=None,output_features=None):
     if day == 'All':
 
         # split into train and test sets
-        train_x = df_x.loc[df_x.index <  TimeSplit, input_features].values
-        test_x  = df_x.loc[df_x.index >= TimeSplit, input_features].values
+        df2 = df
+        dataset = df2[input_features].values
 
-        train_y = df_y.loc[df_y.index <  TimeSplit, output_features].values
-        test_y  = df_y.loc[df_y.index >= TimeSplit, output_features].values
+        train_x   = df.loc[(df.index >=  start_date_train) & (df.index <  start_date_val), input_features].values
+        val_x     = df.loc[(df.index >=  start_date_val)   & (df.index < start_date_test), input_features].values
+        test_x    = df.loc[(df.index >=  start_date_test)  & (df.index < end_date_test), input_features].values
 
-        dataset_x = np.concatenate([train_x,test_x],axis=0)
-        dataset_y = np.concatenate([train_y,test_y],axis=0)
+        train_y   = df.loc[(df.index >=  start_date_train) & (df.index <  start_date_val), output_features].values
+        val_y    = df.loc[(df.index >=  start_date_val)   & (df.index < start_date_test), output_features].values
+        test_y    = df.loc[(df.index >=  start_date_test)  & (df.index < end_date_test), output_features].values
 
         # normalize the dataset
         scaler_x = MinMaxScaler(feature_range=(0, 1))
         train_x  = scaler_x.fit_transform(train_x)
+        val_x    = scaler_x.transform(val_x)
         test_x   = scaler_x.transform(test_x)
 
         scaler_y = MinMaxScaler(feature_range=(0, 1))
         train_y  = scaler_y.fit_transform(train_y)
+        val_y    = scaler_y.transform(val_y)
+        test_y   = scaler_y.transform(test_y)
+
+        trainX, trainY = create_datasetMultipleTimesBackAhead_inverse(train_x,ds_y=train_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+        val2_x = np.concatenate((train_x[-n_steps_in:].reshape(n_steps_in,-1),val_x),axis=0)
+        val2_y = np.concatenate((train_y[-n_steps_in:].reshape(n_steps_in,-1),val_y),axis=0)
+        valX, valY = create_datasetMultipleTimesBackAhead_inverse(val2_x,ds_y=val2_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+        test2_x = np.concatenate((val_x[-n_steps_in:].reshape(n_steps_in,-1),test_x),axis=0)
+        test2_y = np.concatenate((val_y[-n_steps_in:].reshape(n_steps_in,-1),test_y),axis=0)
+        testX, testY = create_datasetMultipleTimesBackAhead_inverse(test2_x,ds_y=test2_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+        # reshape input to be [samples, time steps, features]
+        trainY = np.reshape(trainY, (-1, n_steps_out, len(output_features)))
+        valY   = np.reshape(valY, (-1, n_steps_out, len(output_features)))
+        testY  = np.reshape(testY, (-1, n_steps_out, len(output_features)))
+
+        return trainX, trainY, valX, valY, testX, testY, scaler_x, scaler_y, df2, dataset
+
+
+def SplitTimeseriesMultipleTimesBackAhead_differentTimes(df_x,df_y,day='Monday',start_date_train='2000-02-01',start_date_val='2020-01-01',
+                                                         start_date_test='2020-04-01',end_date_test='2020-05-01',n_steps_out=1,
+                                                         n_steps_in=1,overlap=1,input_features=None,output_features=None):
+    if day == 'All':
+
+        train_x   = df_x.loc[(df_x.index >=  start_date_train) & (df_x.index <  start_date_val), input_features].values
+        val_x     = df_x.loc[(df_x.index >=  start_date_val)   & (df_x.index < start_date_test), input_features].values
+        test_x    = df_x.loc[(df_x.index >=  start_date_test)  & (df_x.index < end_date_test), input_features].values
+
+        train_y   = df_y.loc[(df_y.index >=  start_date_train) & (df_y.index <  start_date_val), output_features].values
+        val_y     = df_y.loc[(df_y.index >=  start_date_val)   & (df_y.index < start_date_test), output_features].values
+        test_y    = df_y.loc[(df_y.index >=  start_date_test)  & (df_y.index < end_date_test), output_features].values
+
+        dataset_x = np.concatenate([train_x,val_x,test_x],axis=0)
+        dataset_y = np.concatenate([train_y,val_y,test_y],axis=0)
+
+        # normalize the dataset
+        scaler_x = MinMaxScaler(feature_range=(0, 1))
+        train_x  = scaler_x.fit_transform(train_x)
+        val_x    = scaler_x.transform(val_x)
+        test_x   = scaler_x.transform(test_x)
+
+        scaler_y = MinMaxScaler(feature_range=(0, 1))
+        train_y  = scaler_y.fit_transform(train_y)
+        val_y    = scaler_y.transform(val_y)
         test_y   = scaler_y.transform(test_y)
 
         trainX, trainY = create_datasetMultipleTimesBackAhead_differentTimes_inverse(train_x, train_y, n_steps_out=n_steps_out, n_steps_in=n_steps_in, overlap=overlap)
+
+        val2_x = np.concatenate((train_x[-n_steps_in:].reshape(n_steps_in,-1),val_x),axis=0)
+        val2_y = np.concatenate((train_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),val_y),axis=0)
+        valX, valY = create_datasetMultipleTimesBackAhead_differentTimes_inverse(val2_x,val2_y, n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+        test2_x = np.concatenate((val_x[-n_steps_in:].reshape(n_steps_in,-1),test_x),axis=0)
+        test2_y = np.concatenate((val_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),test_y),axis=0)
+        testX, testY = create_datasetMultipleTimesBackAhead_differentTimes_inverse(test2_x,ds_y=test2_y,n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+        return trainX, trainY, valX, valY, testX, testY, scaler_x,scaler_y, dataset_x, dataset_y
         
-        test2_x = np.concatenate((train_x[-n_steps_in:].reshape(n_steps_in,-1),test_x),axis=0)
-        test2_y = np.concatenate((train_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),test_y),axis=0)
-
-        testX, testY = create_datasetMultipleTimesBackAhead_differentTimes_inverse(test2_x,test2_y, n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
-
-        return trainX, trainY, testX, testY, scaler_x,scaler_y, dataset_x, dataset_y
-
     else:
 
         df_x = df_x.loc[df_x['day_of_week'] == day]
@@ -223,35 +209,42 @@ def SplitTimeseriesMultipleTimesBackAhead_differentTimes(df_x,df_y,day = 'Monday
 
         return trainX, trainY, testX, testY, scaler_x,scaler_y, dataset_x, dataset_y
 
-def SplitTimeseriesMultipleTimesBackAhead_DifferentTimes_Images(df_x,df_y,TimeSplit_down,TimeSplit_middle,TimeSplit_top, n_steps_out=1, n_steps_in = 1, overlap = 1, output_features=None,IMG_HEIGHT=635,IMG_WIDTH=460):
+def SplitTimeseriesMultipleTimesBackAhead_DifferentTimes_Images(df_x,df_y,start_date_train='2000-02-01',start_date_val='2020-01-01',
+                                                         start_date_test='2020-04-01',end_date_test='2020-05-01',n_steps_out=1,
+                                                         n_steps_in = 1, overlap = 1, output_features=None,IMG_HEIGHT=635,IMG_WIDTH=460):
 
     # split into train and test sets
-    train_x = df_x.loc[(df_x.index >=  TimeSplit_down) & (df_x.index <  TimeSplit_middle)].values
-    test_x  = df_x.loc[(df_x.index >=  TimeSplit_middle) & (df_x.index <=  TimeSplit_top)].values
+    train_x   = df_x.loc[(df_x.index >=  start_date_train) & (df_x.index <  start_date_val)].values
+    val_x     = df_x.loc[(df_x.index >=  start_date_val)   & (df_x.index < start_date_test)].values
+    test_x    = df_x.loc[(df_x.index >=  start_date_test)  & (df_x.index < end_date_test)].values
 
-    train_y = df_y.loc[df_y.index <  TimeSplit_middle, output_features]
-    test_y  = df_y.loc[df_y.index >= TimeSplit_middle, output_features]
+    train_y   = df_y.loc[(df_y.index >=  start_date_train) & (df_y.index <  start_date_val)].values
+    val_y     = df_y.loc[(df_y.index >=  start_date_val)   & (df_y.index < start_date_test)].values
+    test_y    = df_y.loc[(df_y.index >=  start_date_test)  & (df_y.index < end_date_test)].values
 
-    dataset_x = np.concatenate([train_x,test_x],axis=0)
-    dataset_y = np.concatenate([train_y,test_y],axis=0)
+    dataset_x = np.concatenate([train_x,val_x,test_x],axis=0)
+    dataset_y = np.concatenate([train_y,val_y,test_y],axis=0)
 
     # normalize the dataset
     scaler_y = MinMaxScaler(feature_range=(0, 1))
     train_y  = scaler_y.fit_transform(train_y)
+    val_y    = scaler_y.transform(val_y)
     test_y   = scaler_y.transform(test_y)
 
     img_data_array = _build_images_ds(train_x,IMG_HEIGHT,IMG_WIDTH)
-
     trainX, trainY = create_datasetMultipleTimesBackAhead_differentTimes(img_data_array, train_y, n_steps_out=n_steps_out, n_steps_in=n_steps_in, overlap=overlap)
-    
-    test2_x = np.concatenate((train_x[-n_steps_in:].reshape(n_steps_in,-1),test_x),axis=0)
-    test2_y = np.concatenate((train_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),test_y),axis=0)
 
+    val2_x = np.concatenate((train_x[-n_steps_in:].reshape(n_steps_in,-1),val_x),axis=0)
+    val2_y = np.concatenate((train_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),val_y),axis=0)
+    img_data_array = _build_images_ds(val2_x,IMG_HEIGHT,IMG_WIDTH)
+    valX, valY = create_datasetMultipleTimesBackAhead_differentTimes(img_data_array,val2_y, n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
+
+    test2_x = np.concatenate((val_x[-n_steps_in:].reshape(n_steps_in,-1),test_x),axis=0)
+    test2_y = np.concatenate((val_y[-(n_steps_in*24):].reshape((n_steps_in*24),-1),test_y),axis=0)
     img_data_array = _build_images_ds(test2_x,IMG_HEIGHT,IMG_WIDTH)
-
     testX, testY = create_datasetMultipleTimesBackAhead_differentTimes(img_data_array,test2_y, n_steps_out=n_steps_out, n_steps_in = n_steps_in, overlap = overlap)
 
-    return trainX, trainY, testX, testY, scaler_y, dataset_x, dataset_y
+    return trainX, trainY, valX, valY, testX, testY, scaler_y, dataset_x, dataset_y
 
 def _build_images_ds(ds,IMG_HEIGHT,IMG_WIDTH):
     img_data_list = list()
@@ -277,9 +270,9 @@ def _load_images(path,IMG_HEIGHT,IMG_WIDTH):
 
 
 def mean_absolute_percentage_error(y_true, y_pred): 
-	y_true, y_pred = np.array(y_true), np.array(y_pred)
-	return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
 
 # root mean squared error or rmse
 def measure_rmse(actual, predicted):
-	return sqrt(mean_squared_error(actual, predicted))
+    return sqrt(mean_squared_error(actual, predicted))
