@@ -160,3 +160,5 @@ Notebooks/Entrenamiento Modelo/Modelo Completo/Con Imagenes/logs/
 *.pb
 *.gz
 *.v2
+logs/
+*/logs/*
