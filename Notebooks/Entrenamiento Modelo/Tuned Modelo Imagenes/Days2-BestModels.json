@@ -1,0 +1,238 @@
+{
+   "Monday-Arquitectura13":{
+      "Score":1097.7196044921875,
+      "Tiempo Scaneo":591.0457897186279,
+      "Mape Train":2.5122548588907487,
+      "Mape Test":0.3570981335768701,
+      "sMape Train":92.7528225059066,
+      "sMape Test":42.37998654315451,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":320,
+      "dropout_regularizer_layer_4":0.72,
+      "dense_units_layer_5":120,
+      "dense_layer_5_activation":"relu",
+      "learning_rate":1e-05
+   },
+   "Monday-Arquitectura14":{
+      "Score":653.3023681640625,
+      "Tiempo Scaneo":603.1246573925018,
+      "Mape Train":3.173999927156595,
+      "Mape Test":0.28729338594956644,
+      "sMape Train":104.20522659104243,
+      "sMape Test":25.62691434001217,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":5,
+      "lstm_units_layer_4":384,
+      "dropout_regularizer_layer_4":0.8999999999999999,
+      "learning_rate":9.33281938039767e-05
+   }
+}
+{
+   "Thursday-Arquitectura13":{
+      "Score":595.685546875,
+      "Tiempo Scaneo":295.75543451309204,
+      "Mape Train":2.5140837031932417,
+      "Mape Test":0.27978202839449795,
+      "sMape Train":97.16439623203443,
+      "sMape Test":23.148728116178653,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":5,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":5,
+      "lstm_units_layer_4":128,
+      "dropout_regularizer_layer_4":0.63,
+      "dense_units_layer_5":120,
+      "dense_layer_5_activation":"tanh",
+      "learning_rate":1.932993044448491e-05
+   },
+   "Thursday-Arquitectura14":{
+      "Score":653.210693359375,
+      "Tiempo Scaneo":1946.7129263877869,
+      "Mape Train":2.7291491696863206,
+      "Mape Test":0.3087683485322012,
+      "sMape Train":99.93610903419129,
+      "sMape Test":25.373455375157093,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":3,
+      "lstm_units_layer_4":64,
+      "dropout_regularizer_layer_4":0.99,
+      "learning_rate":1e-05
+   }
+}
+{
+   "Wednesday-Arquitectura13":{
+      "Score":843.7055053710938,
+      "Tiempo Scaneo":889.5115191936493,
+      "Mape Train":2.6832889523579833,
+      "Mape Test":0.39206277013017393,
+      "sMape Train":97.82191210174673,
+      "sMape Test":32.62952777797575,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":3,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":64,
+      "dropout_regularizer_layer_4":0.8099999999999999,
+      "dense_units_layer_5":120,
+      "dense_layer_5_activation":"relu",
+      "learning_rate":1e-05
+   },
+   "Wednesday-Arquitectura14":{
+      "Score":616.9774169921875,
+      "Tiempo Scaneo":731.2185742855072,
+      "Mape Train":2.7155331322639262,
+      "Mape Test":0.35314545162605293,
+      "sMape Train":101.22490609585473,
+      "sMape Test":23.90837160641723,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":64,
+      "dropout_regularizer_layer_4":0.8999999999999999,
+      "learning_rate":1e-05
+   }
+}
+{
+   "Tuesday-Arquitectura13":{
+      "Score":2197.7216796875,
+      "Tiempo Scaneo":329.19454884529114,
+      "Mape Train":0.7008009649782615,
+      "Mape Test":0.6575812655882487,
+      "sMape Train":51.20314494793432,
+      "sMape Test":85.66385239886414,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":3,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":3,
+      "lstm_units_layer_4":64,
+      "dropout_regularizer_layer_4":0.0,
+      "dense_units_layer_5":120,
+      "dense_layer_5_activation":"relu",
+      "learning_rate":1e-05
+   },
+   "Tuesday-Arquitectura14":{
+      "Score":461.6095886230469,
+      "Tiempo Scaneo":327.79023814201355,
+      "Mape Train":2.624855648350258,
+      "Mape Test":0.19286720839675445,
+      "sMape Train":99.82481384283963,
+      "sMape Test":18.10247761371419,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":3,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":5,
+      "lstm_units_layer_4":320,
+      "dropout_regularizer_layer_4":0.63,
+      "learning_rate":1.2087589532238071e-05
+   }
+}
+{
+   "Friday-Arquitectura13":{
+      "Score":1050.2685546875,
+      "Tiempo Scaneo":479.60978651046753,
+      "Mape Train":4.264114165757882,
+      "Mape Test":0.588316588140944,
+      "sMape Train":116.36355022860255,
+      "sMape Test":41.50157993527383,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":5,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":5,
+      "lstm_units_layer_4":192,
+      "dropout_regularizer_layer_4":0.36,
+      "dense_units_layer_5":72,
+      "dense_layer_5_activation":"tanh",
+      "learning_rate":4.343843215691618e-05
+   },
+   "Friday-Arquitectura14":{
+      "Score":971.9157104492188,
+      "Tiempo Scaneo":532.9071877002716,
+      "Mape Train":2.4544975415196055,
+      "Mape Test":0.43431345539615596,
+      "sMape Train":88.73803723597645,
+      "sMape Test":38.34558667457118,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":5,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":448,
+      "dropout_regularizer_layer_4":0.18,
+      "learning_rate":1.532211352717545e-05
+   }
+}
+{
+   "Saturday-Arquitectura13":{
+      "Score":593.7059936523438,
+      "Tiempo Scaneo":1839.9432923793793,
+      "Mape Train":2.876996479912532,
+      "Mape Test":0.26334061893131006,
+      "sMape Train":103.32006958107706,
+      "sMape Test":23.183552013096374,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":3,
+      "lstm_units_layer_4":320,
+      "dropout_regularizer_layer_4":0.8999999999999999,
+      "dense_units_layer_5":48,
+      "dense_layer_5_activation":"tanh",
+      "learning_rate":2.776650736175198e-05
+   },
+   "Saturday-Arquitectura14":{
+      "Score":553.8816528320312,
+      "Tiempo Scaneo":928.5717558860779,
+      "Mape Train":2.219766561625792,
+      "Mape Test":0.220798954338887,
+      "sMape Train":91.91642611323618,
+      "sMape Test":21.585894265281063,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":5,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":448,
+      "dropout_regularizer_layer_4":0.72,
+      "learning_rate":1.3648716252145648e-05
+   }
+}
+{
+   "Sunday-Arquitectura13":{
+      "Score":1620.4259033203125,
+      "Tiempo Scaneo":978.535835981369,
+      "Mape Train":1.6549829663563969,
+      "Mape Test":0.4955795901267797,
+      "sMape Train":81.52635379826616,
+      "sMape Test":62.44057705880637,
+      "conv2d_filters_layer_1":8,
+      "conv2d_kernel_layer_1":7,
+      "conv2d_padding_layer_1":"same",
+      "pool_kernel_layer_2":7,
+      "lstm_units_layer_4":64,
+      "dropout_regularizer_layer_4":0.36,
+      "dense_units_layer_5":48,
+      "dense_layer_5_activation":"relu",
+      "learning_rate":1e-05
+   },
+   "Sunday-Arquitectura14":{
+      "Score":736.3565673828125,
+      "Tiempo Scaneo":903.3952775001526,
+      "Mape Train":2.672672811180922,
+      "Mape Test":0.27544358502817246,
+      "sMape Train":96.17033932994775,
+      "sMape Test":28.55790663405495,
+      "conv2d_filters_layer_1":16,
+      "conv2d_kernel_layer_1":5,
+      "conv2d_padding_layer_1":"valid",
+      "pool_kernel_layer_2":5,
+      "lstm_units_layer_4":128,
+      "dropout_regularizer_layer_4":0.8099999999999999,
+      "learning_rate":6.216761231408393e-05
+   }
+}

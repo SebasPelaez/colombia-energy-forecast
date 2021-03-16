@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+
 from tensorflow.keras import backend as K
 
 def symmetric_mean_absolute_percentage_error(y_true,y_pred):
@@ -15,10 +16,10 @@ def symmetric_mean_absolute_percentage_error(y_true,y_pred):
     Output:
         - sMAPE: Métrica calculada.
     """
-    sum_numerator   = 2 * K.abs(y_pred-y_true)
-    sum_denominator = K.clip(K.abs(y_true)+K.abs(y_pred), K.epsilon(), np.inf)
+    sum_numerator   = K.abs(y_pred-y_true)
+    sum_denominator = K.maximum(K.abs(y_true)+K.abs(y_pred), K.epsilon())
     sum_factor = K.sum(sum_numerator/sum_denominator)
     sum_factor = tf.cast(sum_factor,dtype=tf.float64)
-    proportion_factor = 100 / len(y_true)
+    proportion_factor = (2 / len(y_true)) * 100.
     
     return proportion_factor * sum_factor

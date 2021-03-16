@@ -120,7 +120,7 @@ class ArquitecturaI1(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -222,7 +222,7 @@ class ArquitecturaI2(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -296,7 +296,7 @@ class ArquitecturaI3(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -409,7 +409,7 @@ class ArquitecturaI4(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -498,7 +498,7 @@ class ArquitecturaI5(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -559,7 +559,7 @@ class ArquitecturaI6(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -720,7 +720,7 @@ class ArquitecturaI7(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -856,7 +856,7 @@ class ArquitecturaI8(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -964,7 +964,7 @@ class ArquitecturaI9(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1112,7 +1112,7 @@ class ArquitecturaI10(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1235,7 +1235,7 @@ class ArquitecturaI11(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1330,7 +1330,7 @@ class ArquitecturaI12(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),

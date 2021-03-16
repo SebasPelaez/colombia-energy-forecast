@@ -120,7 +120,7 @@ class ArquitecturaI1(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -222,7 +222,7 @@ class ArquitecturaI2(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -296,7 +296,7 @@ class ArquitecturaI3(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -409,7 +409,7 @@ class ArquitecturaI4(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -498,7 +498,7 @@ class ArquitecturaI5(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -559,7 +559,7 @@ class ArquitecturaI6(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -720,7 +720,7 @@ class ArquitecturaI7(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -856,7 +856,7 @@ class ArquitecturaI8(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -964,7 +964,7 @@ class ArquitecturaI9(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1112,7 +1112,7 @@ class ArquitecturaI10(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1235,7 +1235,7 @@ class ArquitecturaI11(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1292,7 +1292,7 @@ class ArquitecturaI12(HyperModel):
         model.add(
             tf.keras.layers.LSTM(
                 units=hp.Int(
-                    "lstm_units_layer_3", min_value=64, max_value=512, step=64, default=128
+                    "lstm_units_layer_3", min_value=64, max_value=448, step=64, default=128
                 ),
                 activation='tanh',
                 kernel_regularizer=tf.keras.regularizers.L1(
@@ -1330,7 +1330,193 @@ class ArquitecturaI12(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
+            metrics=[
+                tf.metrics.MeanAbsoluteError(),
+                tf.keras.metrics.MeanAbsolutePercentageError(),
+                CustomMetrics.symmetric_mean_absolute_percentage_error],
+        )
+
+        return model
+
+
+class ArquitecturaI13(HyperModel):
+    def __init__(self,input_shape,n_steps_out):
+        self.input_shape = input_shape
+        self.n_steps_out = n_steps_out
+
+    def build(self, hp):
+
+        model = tf.keras.Sequential()
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.Conv2D(
+                    input_shape=self.input_shape,
+                    filters=hp.Int(
+                        "conv2d_filters_layer_1", min_value=8, max_value=16, step=8, default=16
+                    ),
+                    kernel_size=hp.Int(
+                        "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
+                    ),
+                    activation='relu',
+                    padding=hp.Choice(
+                        "conv2d_padding_layer_1",
+                        values=["valid", "same"],
+                        default="valid"
+                    )
+                )
+            )
+        )
+
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.MaxPooling2D(
+                    pool_size=hp.Int(
+                        "pool_kernel_layer_2", min_value=3, max_value=7, step=2, default=3
+                    )
+                )
+            )
+        )
+
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.Flatten()
+            )
+        )
+
+        model.add(
+            tf.keras.layers.LSTM(
+                units=hp.Int(
+                    "lstm_units_layer_4", min_value=64, max_value=448, step=64, default=128
+                ),
+                activation='tanh',
+                kernel_regularizer=tf.keras.regularizers.L1(l1=0),
+                dropout=hp.Float(
+                    "dropout_regularizer_layer_4",
+                    min_value=0,
+                    max_value=0.99,
+                    step=0.09,
+                    default=0
+                ),
+                return_sequences=False,
+                stateful=False
+            )
+        )
+
+        model.add(
+            tf.keras.layers.Dense(
+                units=hp.Int(
+                    "dense_units_layer_5", min_value=24, max_value=120, step=24, default=120
+                ),
+                activation=hp.Choice(
+                    "dense_layer_5_activation",
+                    values=["relu", "tanh", "sigmoid"],
+                    default="relu"
+                )
+            )
+        )
+
+        model.add(
+            tf.keras.layers.Dense(units=self.n_steps_out,activation=None)
+        )
+
+        model.compile(
+            optimizer=tf.optimizers.Adam(
+                hp.Float(
+                    "learning_rate",
+                    min_value=1e-5,
+                    max_value=1e-2,
+                    sampling="LOG",
+                    default=1e-3,
+                )
+            ),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
+            metrics=[
+                tf.metrics.MeanAbsoluteError(),
+                tf.keras.metrics.MeanAbsolutePercentageError(),
+                CustomMetrics.symmetric_mean_absolute_percentage_error],
+        )
+
+        return model
+
+class ArquitecturaI14(HyperModel):
+    def __init__(self,input_shape,n_steps_out):
+        self.input_shape = input_shape
+        self.n_steps_out = n_steps_out
+
+    def build(self, hp):
+
+        model = tf.keras.Sequential()
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.Conv2D(
+                    input_shape=self.input_shape,
+                    filters=hp.Int(
+                        "conv2d_filters_layer_1", min_value=8, max_value=16, step=8, default=16
+                    ),
+                    kernel_size=hp.Int(
+                        "conv2d_kernel_layer_1", min_value=3, max_value=7, step=2, default=3
+                    ),
+                    activation='relu',
+                    padding=hp.Choice(
+                        "conv2d_padding_layer_1",
+                        values=["valid", "same"],
+                        default="valid"
+                    )
+                )
+            )
+        )
+
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.MaxPooling2D(
+                    pool_size=hp.Int(
+                        "pool_kernel_layer_2", min_value=3, max_value=7, step=2, default=3
+                    )
+                )
+            )
+        )
+
+        model.add(
+            tf.keras.layers.TimeDistributed(
+                tf.keras.layers.Flatten()
+            )
+        )
+
+        model.add(
+            tf.keras.layers.LSTM(
+                units=hp.Int(
+                    "lstm_units_layer_4", min_value=64, max_value=512, step=64, default=128
+                ),
+                activation='tanh',
+                kernel_regularizer=tf.keras.regularizers.L1(l1=0),
+                dropout=hp.Float(
+                    "dropout_regularizer_layer_4",
+                    min_value=0,
+                    max_value=0.99,
+                    step=0.09,
+                    default=0
+                ),
+                return_sequences=False,
+                stateful=False
+            )
+        )
+
+        model.add(
+            tf.keras.layers.Dense(units=self.n_steps_out,activation=None)
+        )
+
+        model.compile(
+            optimizer=tf.optimizers.Adam(
+                hp.Float(
+                    "learning_rate",
+                    min_value=1e-5,
+                    max_value=1e-2,
+                    sampling="LOG",
+                    default=1e-3,
+                )
+            ),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),

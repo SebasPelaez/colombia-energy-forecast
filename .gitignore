@@ -155,3 +155,5 @@ downloads/
 dataset/
 Notebooks/Entrenamiento Modelo/logs/
 Notebooks/Entrenamiento Modelo/Tuned Modelo Imagenes/dataset/
+Notebooks/Entrenamiento Modelo/Modelo Completo/Sin Imagenes/logs/
+Notebooks/Entrenamiento Modelo/Modelo Completo/Con Imagenes/logs/

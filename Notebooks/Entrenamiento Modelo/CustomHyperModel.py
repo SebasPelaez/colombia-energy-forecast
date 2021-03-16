@@ -1720,7 +1720,7 @@ class Arquitectura31(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1835,7 +1835,7 @@ class Arquitectura32(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -1924,7 +1924,7 @@ class Arquitectura33(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2014,7 +2014,7 @@ class Arquitectura34(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2103,7 +2103,7 @@ class Arquitectura35(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2192,7 +2192,7 @@ class Arquitectura36(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2255,7 +2255,7 @@ class Arquitectura37(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2318,7 +2318,7 @@ class Arquitectura38(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2427,7 +2427,7 @@ class Arquitectura39(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2536,7 +2536,7 @@ class Arquitectura40(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2618,7 +2618,7 @@ class Arquitectura41(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2702,7 +2702,7 @@ class Arquitectura42(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2787,7 +2787,7 @@ class Arquitectura43(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2872,7 +2872,7 @@ class Arquitectura44(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2931,7 +2931,7 @@ class Arquitectura45(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
@@ -2990,7 +2990,7 @@ class Arquitectura46(HyperModel):
                     default=1e-3,
                 )
             ),
-            loss=tf.losses.MeanSquaredError(),
+            loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
             metrics=[
                 tf.metrics.MeanAbsoluteError(),
                 tf.keras.metrics.MeanAbsolutePercentageError(),
