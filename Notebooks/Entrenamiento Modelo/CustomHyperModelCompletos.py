@@ -1180,3 +1180,43 @@ class ModeloCompleto_SinImagen_I15_Suma(HyperModel):
 		)
 
 		return full_model
+
+class ModeloCompleto_SinImagen_I5_Suma_ActivacionDensas(HyperModel):
+
+	def __init__(self,hourly_input_shape,daily_input_shape,n_steps_out):
+		self.hourly_input_shape = hourly_input_shape
+		self.daily_input_shape = daily_input_shape
+		self.n_steps_out = n_steps_out
+
+	def build(self, hp):
+
+		input_1 = tf.keras.layers.Input(shape=self.hourly_input_shape)
+		input_2 = tf.keras.layers.Input(shape=self.daily_input_shape)
+
+		model_1_1 = tf.keras.layers.GRU(units=448,activation='tanh',kernel_regularizer=tf.keras.regularizers.L1(l1=0.06),dropout=0.36,return_sequences=True)(input_1)
+		model_1_1 = tf.keras.layers.GRU(units=128,activation='tanh',kernel_regularizer=tf.keras.regularizers.L1(l1=0.09),dropout=0.36,return_sequences=False)(model_1_1)
+		model_1_1 = tf.keras.layers.Dense(units=self.n_steps_out,activation='relu')(model_1_1)
+
+		model_2_2 = tf.keras.layers.GRU(units=256,activation='tanh',kernel_regularizer=tf.keras.regularizers.L1(l1=0),dropout=0,return_sequences=True)(input_2)
+		model_2_2 = tf.keras.layers.GRU(units=512,activation='tanh',kernel_regularizer=tf.keras.regularizers.L1(l1=0),dropout=0,return_sequences=True)(model_2_2)
+		model_2_2 = tf.keras.layers.Flatten()(model_2_2)
+		model_2_2 = tf.keras.layers.Dense(units=self.n_steps_out,activation='relu')(model_2_2)
+
+		output = tf.keras.layers.Add()([model_1_1, model_2_2])
+
+		output = tf.keras.layers.Dense(units=self.n_steps_out,activation=None)(output)
+
+		full_model = tf.keras.Model(inputs=[input_1, input_2], outputs=[output])
+
+		full_model.compile(
+			optimizer=tf.optimizers.Adam(
+				hp.Float("learning_rate",
+					min_value=1e-5,
+					max_value=1e-2,
+					sampling="LOG",
+					default=1e-3)),
+			loss=CustomMetrics.symmetric_mean_absolute_percentage_error,
+			metrics=[tf.metrics.MeanAbsoluteError(),tf.keras.metrics.MeanAbsolutePercentageError(),CustomMetrics.symmetric_mean_absolute_percentage_error]
+		)
+
+		return full_model
